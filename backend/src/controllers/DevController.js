@@ -3,7 +3,7 @@ const Dev                   = require('../models/Dev')
 const parseStringAsArray    = require('../utils/parseStringAsArray')
 
 module.exports = {
-    // Buscar
+    // Listar
     async index(request, response){
         const devs = await Dev.find();
 
@@ -75,19 +75,11 @@ module.exports = {
     //destroy
     async delete(request, response){
 
-        const github_username = request.body
+        const {github_username} = request.body
 
-        //let dev = await Dev.findOne({ github_username })
+        let dev = await Dev.deleteOne({ github_username : github_username })
 
-        //if(dev){
-
-            //const result = await Dev.deleteOne({_id: dev.id })
-                        
-         
-        //}
-
-        return response.json(github_username)
-
+        return response.json(dev)
     }
 
 }
