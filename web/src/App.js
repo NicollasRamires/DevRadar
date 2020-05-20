@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import api from './services/api.js'
+import React, { useState, useEffect } from 'react';
+import api from './services/api.js';
 
-import './global.css'
-import './App.css'
-import './Sidebar.css'
-import './Main.css'
+import './global.css';
+import './App.css';
+import './Sidebar.css';
+import './Main.css';
+
+import DevItem from './components/DevItem'
 
 //Componente: Bloco isolado de HTML, CSS e JS, o qual não interfere no restante da aplicação
 //Propriedade: Informações que um componente PAI passa para o componente filho
@@ -119,19 +121,9 @@ function App() {
 
       <main>
         <ul>
-          {devs.map(dev => (
-            <li key={dev._id} className="dev-item">
-              <header>
-                <img src={dev.avatar_url} alt={dev.name} />
-                <div className="user-info">
-                  <strong>{dev.name}</strong>
-                  <span>{dev.techs.join(', ')}</span>
-                </div>
-              </header>
-              <p>{dev.bio}</p>
-              <a href={`https://github.com/${dev.github_username}`} target="_blanck">Acessar perfil no Github</a>
-            </li>
-          ))}    
+        {devs.map(dev => (
+          <DevItem key={dev._id} dev={dev} />
+          ))}   
         </ul>
       </main>
     </div>   
